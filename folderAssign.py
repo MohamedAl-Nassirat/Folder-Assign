@@ -41,6 +41,12 @@ for (dirname, dirs, files) in os.walk(scrsPath):
 countForTrain = int(len(imgs)*train_ratio)
 countForValid = int(len(imgs)*valid_ratio)
 
+#Create directories we need an training directory --- > /img training, /labelTraining
+#                              validation directory ---- > /img Validation, /label Validation
+#                    Creates and stores it in src 
+
+
+
 #Training Path
 for x in range(countForTrain):
 
