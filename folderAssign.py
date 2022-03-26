@@ -45,7 +45,16 @@ countForValid = int(len(imgs)*valid_ratio)
 #                              validation directory ---- > /img Validation, /label Validation
 #                    Creates and stores it in src 
 
+# trainPath imgtrainPath traininglabelPath
+# valPath valimgPath vallabelPath
 
+
+
+os.mkdir(imgtrainPath)
+os.mkdir(traininglabelPath)
+
+os.mkdir(valimgPath)
+os.mkdir(vallabelPath)
 
 #Training Path
 for x in range(countForTrain):
@@ -54,8 +63,8 @@ for x in range(countForTrain):
     filetxt = filepng[:-4] +'.txt' # get name of corresponding label 
     
                             # /img --> .png      store in    /training ---> /imgTraining              /imgtraining ----> .png
-    shutil.move(os.path.join(scrsPath, filepng), os.path.join(trainPath, imgtrainPath), os.path.join(imgtrainPath, filepng))
-    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(trainPath, traininglabelPath), os.path.join(traininglabelPath, filetxt))
+    x=shutil.move(os.path.join(scrsPath, filepng), os.path.join(trainPath, imgtrainPath), os.path.join(imgtrainPath, filepng))
+    y=shutil.move(os.path.join(scrsPath, filetxt), os.path.join(trainPath, traininglabelPath), os.path.join(traininglabelPath, filetxt))
 
     #remove files from folder once it is sorted
     imgs.remove(filepng)
@@ -70,8 +79,8 @@ for x in range(countForValid):
     filetxt = filepng[:-4] +'.txt' 
 
     #move both files into train directory
-    shutil.move(os.path.join(scrsPath, filepng), os.path.join(valPath, valimgPath), os.path.join(valimgPath,filepng))
-    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(valPath, vallabelPath), os.path.join(vallabelPath, filetxt))
+    z=shutil.move(os.path.join(scrsPath, filepng), os.path.join(valPath, valimgPath), os.path.join(valimgPath,filepng))
+    j=shutil.move(os.path.join(scrsPath, filetxt), os.path.join(valPath, vallabelPath), os.path.join(vallabelPath, filetxt))
 
     #remove files from arrays
     imgs.remove(filepng)
