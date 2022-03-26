@@ -1,21 +1,18 @@
 import os
 from random import choice
 import shutil
+import time
 
-#Empty Arrays to store
+
+#
 imgs =[]
 txt =[]
+startTime= time.time()
 
 #Initalize Directory Names
 scrsPath = 'img' #Main Directory where images and annotations are being stored
-#scrsAnnotationPath='annotations'
-#scrsImagesPath='images' <sub directories, no longer in use>
-
-trainPath = 'training'
 imgtrainPath='imgTraining'
 traininglabelPath='labelTraining'
-
-valPath = 'validation'
 valimgPath='imgValidation'
 vallabelPath='labelValidation'
 
@@ -25,8 +22,8 @@ train_ratio = 0.9
 valid_ratio = 0.1
 
 
+totalImgCount = len(os.listdir(scrsPath))-1
 
-totalImgCount = len(os.listdir(scrsPath))/2
 
 #sorting the files into its corresponding arrays
 for (dirname, dirs, files) in os.walk(scrsPath):
@@ -40,36 +37,33 @@ for (dirname, dirs, files) in os.walk(scrsPath):
 #Counter for training and validation folders
 countForTrain = int(len(imgs)*train_ratio)
 countForValid = int(len(imgs)*valid_ratio)
+# Create directories to store 
+if os.path.isdir(imgtrainPath) == True:
+    print("The directories have already been created. Sorting will still continue")
+elif os.path.isdir(imgtrainPath) == False:
+    
+    os.mkdir(imgtrainPath)
+    os.mkdir(traininglabelPath)
+    os.mkdir(valimgPath)
+    os.mkdir(vallabelPath)
+    IMGcount = len(os.listdir(imgtrainPath)) + len(os.listdir(traininglabelPath))
+    VALcount = len(os.listdir(valimgPath)) + len(os.listdir(vallabelPath))  
 
-#Create directories we need an training directory --- > /img training, /labelTraining
-#                              validation directory ---- > /img Validation, /label Validation
-#                    Creates and stores it in src 
 
-# trainPath imgtrainPath traininglabelPath
-# valPath valimgPath vallabelPath
-
-
-
-os.mkdir(imgtrainPath)
-os.mkdir(traininglabelPath)
-
-os.mkdir(valimgPath)
-os.mkdir(vallabelPath)
 
 #Training Path
 for x in range(countForTrain):
 
     filepng = choice(imgs) # get name of random image from origin dir
-    filetxt = filepng[:-4] +'.txt' # get name of corresponding label 
+    filetxt = filepng[:-4] +'.txt' # get name of corresponding label , ensures 0.png and 0.txt are catagorized together
     
                             # /img --> .png      store in    /training ---> /imgTraining              /imgtraining ----> .png
-    x=shutil.move(os.path.join(scrsPath, filepng), os.path.join(trainPath, imgtrainPath), os.path.join(imgtrainPath, filepng))
-    y=shutil.move(os.path.join(scrsPath, filetxt), os.path.join(trainPath, traininglabelPath), os.path.join(traininglabelPath, filetxt))
+    shutil.move(os.path.join(scrsPath, filepng), os.path.join(imgtrainPath, filepng))
+    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(traininglabelPath, filetxt))
 
     #remove files from folder once it is sorted
     imgs.remove(filepng)
     txt.remove(filetxt)
-
 
 
 #validation directory  
@@ -79,8 +73,8 @@ for x in range(countForValid):
     filetxt = filepng[:-4] +'.txt' 
 
     #move both files into train directory
-    z=shutil.move(os.path.join(scrsPath, filepng), os.path.join(valPath, valimgPath), os.path.join(valimgPath,filepng))
-    j=shutil.move(os.path.join(scrsPath, filetxt), os.path.join(valPath, vallabelPath), os.path.join(vallabelPath, filetxt))
+    shutil.move(os.path.join(scrsPath, filepng), os.path.join(valimgPath,filepng))
+    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(vallabelPath, filetxt))
 
     #remove files from arrays
     imgs.remove(filepng)
@@ -88,6 +82,7 @@ for x in range(countForValid):
 
 
 
-print("Total images in folder: ", totalImgCount)
-
- 
+print("Total images in src folder: ", totalImgCount)
+print("Training images in folder: ",IMGcount)
+print("Validation images in folder: ", VALcount)
+print("Total time taken: ", (time.time() - startTime))
