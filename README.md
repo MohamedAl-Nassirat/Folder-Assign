@@ -10,7 +10,7 @@ go to Validation.
 <img width="770" alt="Screen Shot 2022-03-26 at 1 28 03 AM" src="https://user-images.githubusercontent.com/96555957/160230469-6813dcdc-b23d-4383-a641-0eb379812932.png">
 
 
-In this example, the script would sort 32,088 images with a performing runtime of `5.533304214477539 s` 
+In this example, the script would sort 32,088 images with a performing runtime of `1.533304214477539 s` 
 
 
 
