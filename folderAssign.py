@@ -1,13 +1,12 @@
 import os
 from random import choice
 import shutil
-import time
-
+from time import process_time
 
 #
 imgs =[]
 txt =[]
-startTime= time.time()
+t1_start = process_time() 
 
 #Initalize Directory Names
 scrsPath = 'img' #Main Directory where images and annotations are being stored
@@ -80,9 +79,9 @@ for x in range(countForValid):
     imgs.remove(filepng)
     txt.remove(filetxt)
 
-
+t1_stop=t1_stop = process_time()
 
 print("Total images in src folder: ", totalImgCount)
 print("Training images in folder: ",IMGcount)
 print("Validation images in folder: ", VALcount)
-print("Total time taken: ", (time.time() - startTime))
+print("Total time taken: ", (t1_stop-t1_start))
