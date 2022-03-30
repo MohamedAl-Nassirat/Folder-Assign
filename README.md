@@ -1,16 +1,17 @@
 # Folder Assign 
 
-
 Folder assign is an automated sorting system meant to prepare your machine learning training sets and sort them accordingly. 
-In this specific script, 90% of the .png and .txt files will be sorted at random into Training and 10% will
-go to Validation. 
+In this specific script you will get the optino of assigning the percentage amount of files you want to be split. Files will be safely split into a selection of Training and Validation folders, and ensures the corresponding annotations don't get lost in the splitting. 
+
+<img width="777" alt="Screen Shot 2022-03-29 at 10 52 10 PM" src="https://user-images.githubusercontent.com/96555957/160754625-e62219e1-614b-4923-9961-6c17b770759e.png">
 
 
-<img width="768" alt="Screen Shot 2022-03-26 at 1 22 32 AM" src="https://user-images.githubusercontent.com/96555957/160230459-56027c60-15df-4b1b-b531-4bd8924a024f.png">
-<img width="770" alt="Screen Shot 2022-03-26 at 1 28 03 AM" src="https://user-images.githubusercontent.com/96555957/160230469-6813dcdc-b23d-4383-a641-0eb379812932.png">
+<img width="772" alt="Screen Shot 2022-03-29 at 10 57 04 PM" src="https://user-images.githubusercontent.com/96555957/160754650-fd71ffb9-300e-4ec3-aadb-a2c023313853.png">
 
 
-In this example, the script would sort 32,088 images with a performing runtime of `1.533304214477539 s` 
+## Input Prompt
+
+<img width="730" alt="Screen Shot 2022-03-29 at 10 54 57 PM" src="https://user-images.githubusercontent.com/96555957/160754668-aaffc339-72a6-47f2-b76e-a8b337af2472.png">
 
 
 
