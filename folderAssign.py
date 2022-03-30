@@ -10,17 +10,17 @@ txt =[]
 
 #Initalize Directory Names
 scrsPath = 'img' #Main Directory where images and annotations are being stored
-imgtrainPath='imgTraining'
-traininglabelPath='labelTraining'
-valimgPath='imgValidation'
-vallabelPath='labelValidation'
+imgtrainPath='imgTraining' # /imgTraining 
+traininglabelPath='labelTraining' # /labelTraining
+valimgPath='imgValidation' # /imgValidation 
+vallabelPath='labelValidation' #labelValidation
 
 while (True): 
     trainRatio=float(input("What percentage of your data would you like to go to training? (decimal): "))
     validRatio=float(input("What percentage of your data would you like to go to validation? (decimal): "))
     if trainRatio + validRatio == 1:
-        train_ratio = trainRatio
-        valid_ratio = validRatio
+        train_ratio = trainRatio #store ratio to go into training
+        valid_ratio = validRatio #store ratio to go into validation
         break
     else:
         print("Your percentages don't add up to 100%, please retry")
@@ -28,10 +28,10 @@ while (True):
         
 
 
-totalImgCount = len(os.listdir(scrsPath))-1
+totalImgCount = len(os.listdir(scrsPath))-1 # takes the total img count found in /img
 
 
-#sorting the files into its corresponding arrays
+#sorting the files into its corresponding arrays, ensures that .txt or .png (can add more room for xml etc)
 for (dirname, dirs, files) in os.walk(scrsPath):
     for filename in files:
         if filename.endswith('.txt'):
@@ -40,19 +40,13 @@ for (dirname, dirs, files) in os.walk(scrsPath):
             imgs.append(filename)
 
 
-#Counter for training and validation folders
+#Counter for training and validation folders 
 countForTrain = int(len(imgs)*train_ratio)
 countForValid = int(len(imgs)*valid_ratio)
-# Create directories to store
-# 
-#Check every case
 
-
-
-
-
+#Error handling system for creating the folders
 if not os.path.exists(imgtrainPath):
-        os.makedirs(imgtrainPath)
+        os.makedirs(imgtrainPath) # creates /imgtraining folder
 if not os.path.exists(traininglabelPath):
         os.makedirs(traininglabelPath)
 if not os.path.exists(valimgPath):
@@ -60,9 +54,9 @@ if not os.path.exists(valimgPath):
 if not os.path.exists(vallabelPath):
         os.makedirs(vallabelPath)
 else:
-    print("Directories have already been created, sorting will still continue")
+    print("Directories have already been created, sorting will still continue") 
+    
         
-
 
 
 
@@ -95,12 +89,14 @@ for x in range(countForValid):
     imgs.remove(filepng)
     txt.remove(filetxt)
 
-t1_stop=t1_stop = process_time()
+
 
 IMGcount = len(os.listdir(imgtrainPath)) 
-imgLABELcount= len(os.listdir(traininglabelPath)) #fix later
+imgLABELcount= len(os.listdir(traininglabelPath)) 
 VALcount = len(os.listdir(valimgPath)) 
-valLABELcount=len(os.listdir(vallabelPath))  # fix later
+valLABELcount=len(os.listdir(vallabelPath))  
+
+t1_stop=t1_stop = process_time() #End CPU runtime time
 
 print("Total images in src folder: ", totalImgCount)
 print("Training images in folder: ",IMGcount)

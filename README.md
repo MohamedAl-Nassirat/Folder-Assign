@@ -17,10 +17,12 @@ In this example, the script would sort 32,088 images with a performing runtime o
 
 ## How it works
   1. Load your .png and .txt files into the main img folder
-  2. Run the script `python3 folderassign.py`
-  3. Files will be sorted at random into Training and Validation folders and can be easily accessed in `imgTraining` `imgValidation` `labelValidation` `labelTraining`
-  4. Enjoy script
-
+  2. CD into directory saved and run  `python3 folderassign.py` in terminal
+  3. Files will be sorted at random into Training and Validation according to your percentages and the sets and can be easily accessed in `imgTraining` `imgValidation` `labelValidation` `labelTraining`
+  
+## To-Do
+  1. Accept all data types (.xml, .csv, .jpeg etc)
+  
 
 ##
 
