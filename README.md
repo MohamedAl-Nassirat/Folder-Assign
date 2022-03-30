@@ -2,8 +2,7 @@
 
 
 Folder assign is an automated sorting system meant to prepare your machine learning training sets and sort them accordingly. 
-In this specific script, 90% of the .png and .txt files will be sorted at random into Training and 10% will
-go to Validation. 
+In this specific script you will get the optino of assigning the percentage amount of files you want to be split. Files will be safely split into a selection of Training and Validation folders, and ensures the corresponding annotations don't get lost in the splitting. 
 
 
 <img width="768" alt="Screen Shot 2022-03-26 at 1 22 32 AM" src="https://user-images.githubusercontent.com/96555957/160230459-56027c60-15df-4b1b-b531-4bd8924a024f.png">
