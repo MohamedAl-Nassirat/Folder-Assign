@@ -3,13 +3,14 @@ from random import choice
 import shutil
 from time import process_time
 
-
 t1_start = process_time() 
 imgs =[]
 txt =[]
 
 #Initalize Directory Names
-scrsPath = 'img' #Main Directory where images and annotations are being stored
+scrsPath = 'main' #Main Directory where images and annotations are being stored
+xPath='img'
+yPath='label'
 imgtrainPath='imgTraining' # /imgTraining 
 traininglabelPath='labelTraining' # /labelTraining
 valimgPath='imgValidation' # /imgValidation 
@@ -28,11 +29,11 @@ while (True):
         
 
 
-totalImgCount = len(os.listdir(scrsPath))-1 # takes the total img count found in /img
+totalImgCount = (len(os.listdir(scrsPath))-1)/2 # takes the total img count found in /img
 
 
 #sorting the files into its corresponding arrays, ensures that .txt or .png (can add more room for xml etc)
-for (dirname, dirs, files) in os.walk(scrsPath):
+for (dirname, dirs, files) in os.walk(scrsPath,topdown=True): #possible solution ?? os.walk(scrs patos.walk())
     for filename in files:
         if filename.endswith('.txt'):
             txt.append(filename)
@@ -67,8 +68,8 @@ for x in range(countForTrain):
     filetxt = filepng[:-4] +'.txt' # get name of corresponding label , ensures 0.png and 0.txt are catagorized together
     
                             # /img --> .png      store in    /training ---> /imgTraining              /imgtraining ----> .png
-    shutil.move(os.path.join(scrsPath, filepng), os.path.join(imgtrainPath, filepng))
-    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(traininglabelPath, filetxt))
+    shutil.move(os.path.join(scrsPath, os.path.join(xPath,filepng)), os.path.join(imgtrainPath, filepng))
+    shutil.move(os.path.join(scrsPath, os.path.join(yPath,filetxt)), os.path.join(traininglabelPath, filetxt))
 
     #remove files from folder once it is sorted
     imgs.remove(filepng)
@@ -82,13 +83,12 @@ for x in range(countForValid):
     filetxt = filepng[:-4] +'.txt' 
 
     #move both files into train directory
-    shutil.move(os.path.join(scrsPath, filepng), os.path.join(valimgPath,filepng))
-    shutil.move(os.path.join(scrsPath, filetxt), os.path.join(vallabelPath, filetxt))
+    shutil.move(os.path.join(scrsPath, os.path.join(xPath,filepng)), os.path.join(valimgPath,filepng))
+    shutil.move(os.path.join(scrsPath, os.path.join(yPath,filetxt)), os.path.join(vallabelPath, filetxt))
 
     #remove files from arrays
     imgs.remove(filepng)
     txt.remove(filetxt)
-
 
 
 IMGcount = len(os.listdir(imgtrainPath)) 
