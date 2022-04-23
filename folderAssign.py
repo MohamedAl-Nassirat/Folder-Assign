@@ -9,7 +9,7 @@ txt =[]
 
 #Initalize Directory Names
 scrsPath = 'main' #Main Directory where images and annotations are being stored
-xPath='img'
+xPath='imgs'
 yPath='label'
 imgtrainPath='imgTraining' # /imgTraining 
 traininglabelPath='labelTraining' # /labelTraining
@@ -65,8 +65,9 @@ else:
 for x in range(countForTrain):
 
     filepng = choice(imgs) # get name of random image from origin dir
-    filetxt = filepng[:-4] +'.txt' # get name of corresponding label , ensures 0.png and 0.txt are catagorized together
-    
+
+    filetxt = filepng[:-4] + '.txt' # get name of corresponding label , ensures 0.png and 0.txt are catagorized together
+
                             # /img --> .png      store in    /training ---> /imgTraining              /imgtraining ----> .png
     shutil.move(os.path.join(scrsPath, os.path.join(xPath,filepng)), os.path.join(imgtrainPath, filepng))
     shutil.move(os.path.join(scrsPath, os.path.join(yPath,filetxt)), os.path.join(traininglabelPath, filetxt))
